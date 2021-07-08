@@ -85,6 +85,15 @@ list(APPEND ${CURRENT_PROJECT_NAME}_PUBLIC_HEADERS
 
      include/nil/crypto3/hash/adaptor/hashed.hpp)
 
+if(CRYPTO3_HASH_CHECKSUM_ADLER)
+    list(APPEND ${CURRENT_PROJECT_NAME}_ADLER32_HEADERS
+         include/nil/crypto3/hash/adler.hpp)
+
+    add_definitions(-D${CMAKE_UPPER_WORKSPACE_NAME}_HAS_ADLER)
+    list(APPEND ${CURRENT_PROJECT_NAME}_PUBLIC_HEADERS
+         ${${CURRENT_PROJECT_NAME}_ADLER32_HEADERS})
+endif()
+
 if(CRYPTO3_HASH_BLAKE2B)
     list(APPEND ${CURRENT_PROJECT_NAME}_BLAKE2B_HEADERS
          include/nil/crypto3/hash/blake2b.hpp

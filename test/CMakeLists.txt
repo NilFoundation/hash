@@ -48,6 +48,7 @@ macro(define_hash_test name)
 endmacro()
 
 set(TESTS_NAMES
+    "adler"
     "blake2b"
     "keccak"
     "md4"
