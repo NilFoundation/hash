@@ -49,6 +49,7 @@ endmacro()
 
 set(TESTS_NAMES
     "blake2b"
+    "ghash"
     "keccak"
     "md4"
     "md5"

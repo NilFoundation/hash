@@ -54,6 +54,7 @@ option(CRYPTO3_HASH_CHECKSUM_ADLER "Build with Adler checksum support" TRUE)
 option(CRYPTO3_HASH_CHECKSUM_CRC "Build with CRC checksum support" TRUE)
 option(CRYPTO3_HASH_CUBEHSAH "Build with Cubehash hash support" TRUE)
 option(CRYPTO3_HASH_COMB4P "Build with Comb4p hash support" TRUE)
+option(CRYPTO3_HASH_GHASH "Build with GHASH hash support" TRUE)
 option(CRYPTO3_HASH_GOST_34_11 "Build with GOST.34.11 hash support" TRUE)
 option(CRYPTO3_HASH_KECCAK "Build with Keccak hash support" TRUE)
 option(CRYPTO3_HASH_MD4 "Build with MD4 hash support" TRUE)
@@ -95,6 +96,21 @@ if(CRYPTO3_HASH_BLAKE2B)
     add_definitions(-D${CMAKE_UPPER_WORKSPACE_NAME}_HAS_BLAKE2B)
     list(APPEND ${CURRENT_PROJECT_NAME}_PUBLIC_HEADERS
          ${${CURRENT_PROJECT_NAME}_BLAKE2B_HEADERS})
+endif()
+
+if(CRYPTO3_HASH_GHASH)
+    list(APPEND ${CURRENT_PROJECT_NAME}_GHASH_HEADERS
+         include/nil/crypto3/hash/detail/ghash/clmul/clmul_ssse3.hpp
+         include/nil/crypto3/hash/detail/ghash/clmul/clmul.hpp
+         include/nil/crypto3/hash/detail/ghash/pmull/pmull.hpp
+         include/nil/crypto3/hash/detail/ghash/basic_ghash_policy.hpp
+         include/nil/crypto3/hash/detail/ghash/ghash_functions.hpp
+         include/nil/crypto3/hash/detail/ghash/ghash_policy.hpp
+         include/nil/crypto3/hash/ghash5.hpp)
+
+    add_definitions(-D${CMAKE_UPPER_WORKSPACE_NAME}_HAS_GHASH)
+    list(APPEND ${CURRENT_PROJECT_NAME}_PUBLIC_HEADERS
+         ${${CURRENT_PROJECT_NAME}_GHASH_HEADERS})
 endif()
 
 if(CRYPTO3_HASH_KECCAK)
